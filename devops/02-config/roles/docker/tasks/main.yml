@@ -31,3 +31,9 @@
 
   - name: start docker service
     service: name=docker state=restarted enabled=yes
+
+  - name: add docker group
+    group: name=docker state=present
+
+  - name: add deploy user to docker group
+    user: name=deploy shell=/bin/bash groups=docker append=yes
