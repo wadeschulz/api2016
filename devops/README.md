@@ -18,3 +18,13 @@ to start the deployment. User will be prompted to enter the ESXi host address, S
 
 # 02-config
 
+```
+$ ansible-playbook -i hosts -k site.yml
+
+SSH password:
+SUDO password[defaults to SSH password]:
+Enter a password for root:
+confirm Enter a password for root:
+Enter a password for the deploy user:
+confirm Enter a password for the deploy user:
+```
