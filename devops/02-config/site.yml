@@ -1,0 +1,20 @@
+---
+- hosts: all
+  user: root
+  vars_prompt:
+   - name: "root_password"    
+     prompt: "Enter a password for root"    
+     private: yes    
+     encrypt: "md5_crypt" #need to have python-passlib installed in local machine before we can use it    
+     confirm: yes    
+   - name: "deploy_password"    
+     prompt: "Enter a password for the deploy user"    
+     private: yes    
+     encrypt: "md5_crypt" #need to have python-passlib installed in local machine before we can use it    
+     confirm: yes
+  roles:
+   - init
+   - docker
+  vars:
+    - docker_conf: docker.devicemapper.conf.j2
+    - thinpool: docker-thinpool

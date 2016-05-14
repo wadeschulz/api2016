@@ -1,0 +1,33 @@
+---
+  - name: disable firewalld
+    yum: name=firewalld state=absent
+
+  - name: install iptables service
+    yum: name=iptables-services state=latest
+
+  - name: start iptables
+    service: name=iptables state=restarted enabled=yes
+
+  - name: clear iptables rules
+    shell: iptables -F && service iptables save
+
+  - name: add docker repository
+    template: src=docker.j2 dest=/etc/yum.repos.d/docker.repo
+
+  - name: install docker engine and docker-py
+    action: yum name={{item}} state=present
+    with_items:
+      - docker-engine
+      - docker-py
+      
+  - name : create docker config directory
+    file: path=/etc/systemd/system/docker.service.d state=directory recurse=yes
+
+  - name : copy docker config
+    template: src={{docker_conf}} dest=/etc/systemd/system/docker.service.d/docker.conf
+
+  - name: reload systemctl daemons
+    shell: systemctl daemon-reload
+
+  - name: start docker service
+    service: name=docker state=restarted enabled=yes
