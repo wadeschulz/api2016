@@ -16,6 +16,12 @@ VM/Build name: <VM INSTANCE NAME>
 
 to start the deployment. User will be prompted to enter the ESXi host address, SSH username/password for ESXi, the ESXi datastore name for primary OS storage (25GB), and an instance name for the virtual machine. Additional configuration options to adjust memory, CPU, storage, and OS-level configuration can be found in the centos7/packer-config.json and centos7/ks.cfg files.
 
+# Drive Configuration
+
+Prior to deploying Docker with the Ansible scripts below, two drives should be created:
+* 50GB drive configured as a logical volume with a thinpool for Docker storage
+* 500GB (or other appropriate size for data) configured as an ext4 volume
+
 # 02-config
 
 ```

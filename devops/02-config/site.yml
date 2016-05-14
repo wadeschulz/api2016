@@ -16,5 +16,5 @@
    - init
    - docker
   vars:
-    - docker_conf: docker.devicemapper.conf.j2
-    - thinpool: docker-thinpool
+   - docker_conf: docker.devicemapper.conf.j2
+   - thinpool: docker-thinpool

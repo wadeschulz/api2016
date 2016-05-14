@@ -37,3 +37,6 @@
 
   - name: add deploy user to docker group
     user: name=deploy shell=/bin/bash groups=docker append=yes
+
+  - name: copy Dockerfile for use in benchmark testing
+    copy: src=Dockerfile dest=/root/benchmarking/Dockerfile
