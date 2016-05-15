@@ -11,4 +11,6 @@ FROM centos:7
 MAINTAINER Wade Schulz <wade.schulz@gmail.com>
 
 RUN yum -y update
-RUN yum -y install hdparm
+RUN yum -y install epel-release
+RUN yum -y install sysbench iperf3
+RUN useradd deploy
