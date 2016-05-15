@@ -2,12 +2,15 @@
   - name : Update yum packages
     yum: name=* state=latest
     
-  - name : install EPEL, hdparm
+  - name : install EPEL
+    yum: name=epel-release state=latest
+    
+  - name: install benchmarking tools
     yum: name={{item}} state=latest
     with_items:
-      - epel-release
-      - hdparm
-    
+      - sysbench
+      - iperf3
+
   - name : add deployment user
     action: user name=deploy password={{deploy_password}}
 
